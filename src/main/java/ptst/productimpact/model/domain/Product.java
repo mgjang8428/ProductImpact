@@ -1,8 +1,12 @@
 package ptst.productimpact.model.domain;
 
-import java.util.Date;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 
+import java.util.Date;
+@Entity
 public class Product {
+    @Id
     private int number;
     private int clientNumber;
     private int carrierNumber;
