@@ -1,12 +1,13 @@
 package ptst.productimpact.model.domain;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+import org.hibernate.annotations.ColumnDefault;
 
 import java.util.Date;
 @Entity
 public class Product {
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private int number;
     private int clientNumber;
     private int carrierNumber;
@@ -14,10 +15,15 @@ public class Product {
     private int invoiceNumber;
     private String recipient;
     private String receiveAddress;
-    private String request;
+    private String requestContent;
+    @Temporal(TemporalType.TIMESTAMP)
     private Date startDateTime;
+    @Temporal(TemporalType.TIMESTAMP)
     private Date completeDateTime;
+    @ColumnDefault("true")
     private boolean status;
+    @ColumnDefault("false")
     private boolean deliveryStatus;
+    @ColumnDefault("false")
     private boolean completeStatus;
 }
