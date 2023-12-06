@@ -1,9 +1,12 @@
 package ptst.productimpact.model.domain;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 import org.hibernate.annotations.ColumnDefault;
 
 @Entity
+@Getter @Setter
 public class Carrier {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)

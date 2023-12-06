@@ -1,14 +1,15 @@
 package ptst.productimpact.model.domain;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 import org.hibernate.annotations.ColumnDefault;
 
 @Entity
-@Table(name = "CLIENT")
+@Getter @Setter
 public class Client {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @Column(name = "CLIENT_NUM")
     private int number;
     @Column(nullable = false)
     private String id;

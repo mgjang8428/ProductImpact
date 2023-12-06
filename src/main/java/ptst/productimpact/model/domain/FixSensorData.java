@@ -1,16 +1,17 @@
 package ptst.productimpact.model.domain;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.Date;
 @Entity
+@Getter @Setter
 public class FixSensorData {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private int number;
-    @ManyToOne
-    @JoinColumn(name = "DEVICE_NUMBER")
-    private Device deviceNumber;
+    private int deviceNumber;
     private int recordNumber;
     @Temporal(TemporalType.TIMESTAMP)
     private Date recordDateTime;
