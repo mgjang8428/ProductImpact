@@ -12,7 +12,7 @@ spring:
 #    url: jdbc:mariadb://192.168.150.150:7006/tutorial
 #    driver-class-name: org.mariadb.jdbc.Driver
 #    username: root
-#    password: 1234
+#    password: @@mg5428
 
   jpa:
     hibernate:
