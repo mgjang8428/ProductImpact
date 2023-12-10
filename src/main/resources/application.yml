@@ -8,6 +8,11 @@ spring:
     username: mg
     password: mg5428
     driver-class-name: org.h2.Driver
+#    url: jdbc:mariadb://172.23.0.3:3306/tutorial
+#    url: jdbc:mariadb://192.168.150.150:7006/tutorial
+#    driver-class-name: org.mariadb.jdbc.Driver
+#    username: root
+#    password: 1234
 
   jpa:
     hibernate:
