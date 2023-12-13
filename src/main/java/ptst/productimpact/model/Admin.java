@@ -1,4 +1,4 @@
-package ptst.productimpact.model.domain;
+package ptst.productimpact.model;
 
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -7,7 +7,7 @@ import org.hibernate.annotations.ColumnDefault;
 
 @Entity
 @Getter @Setter
-public class Carrier {
+public class Admin {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private int number;
@@ -16,7 +16,6 @@ public class Carrier {
     @Column(nullable = false)
     private String pw;
     private String name;
-    private String phoneNumber;
     @ColumnDefault("true")
     private boolean status;
 }

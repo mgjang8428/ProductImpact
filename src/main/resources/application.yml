@@ -1,19 +1,18 @@
 spring:
-  h2:
-    console:
-      enabled: true
-      path: /h2-console
+  #  h2:
+  #    console:
+  #      enabled: true
+  #      path: /h2-console
   datasource:
-    url: jdbc:h2:tcp://localhost/~/impact
-    username: mg
-    password: mg5428
-    driver-class-name: org.h2.Driver
-#    url: jdbc:mariadb://172.23.0.3:3306/tutorial
-#    url: jdbc:mariadb://192.168.150.150:7006/tutorial
-#    driver-class-name: org.mariadb.jdbc.Driver
-#    username: root
-#    password: @@mg5428
-
+  #    url: jdbc:h2:tcp://localhost/~/impact
+  #    username: mg
+  #    password: mg5428
+  #    driver-class-name: org.h2.Driver
+  ##    url: jdbc:mariadb://172.23.0.3:3306/tutorial
+    url: jdbc:mariadb://192.168.150.150:7006/impact
+    driver-class-name: org.mariadb.jdbc.Driver
+    username: root
+    password: "@@mg5428"
   jpa:
     hibernate:
       ddl-auto: update

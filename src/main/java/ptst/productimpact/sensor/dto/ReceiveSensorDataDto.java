@@ -1,9 +1,11 @@
-package ptst.productimpact.model.domain.dto;
+package ptst.productimpact.sensor.dto;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter @Setter
+@NoArgsConstructor
 public class ReceiveSensorDataDto {
     private int no;
     private boolean vibe;

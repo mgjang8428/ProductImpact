@@ -1,15 +1,16 @@
-package ptst.productimpact.model.domain;
+package ptst.productimpact.sensor.entity;
 
 import jakarta.persistence.*;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
-import java.util.Date;
 
 @Entity
 @Getter
 @Setter
+@NoArgsConstructor
 public class Sensor {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)

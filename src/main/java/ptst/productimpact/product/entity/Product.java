@@ -1,4 +1,4 @@
-package ptst.productimpact.model.domain;
+package ptst.productimpact.product.entity;
 
 import jakarta.persistence.*;
 import lombok.Getter;

@@ -1,6 +1,7 @@
-package ptst.productimpact.model.domain;
+package ptst.productimpact.fixsensor.entity;
 
 import jakarta.persistence.*;
+import java.time.LocalDateTime;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -14,8 +15,12 @@ public class FixSensorData {
     private int deviceNumber;
     private int recordNumber;
     @Temporal(TemporalType.TIMESTAMP)
-    private Date recordDateTime;
+    private LocalDateTime recordDateTime;
+
     private boolean shockDetect;
     private boolean overturnDetect;
-    private int gpsData;
+
+    private boolean gpsStats;
+    private double gpsLat;
+    private double gpsLng;
 }
