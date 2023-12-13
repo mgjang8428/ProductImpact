@@ -34,3 +34,9 @@ dependencies {
 tasks.named('test') {
     useJUnitPlatform()
 }
+
+bootJar{
+    archiveBaseName = 'product-impact'
+    archiveFileName = 'product-impact.jar'
+    archiveVersion = "0.0.0"
+}
