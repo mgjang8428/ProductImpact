@@ -25,12 +25,12 @@ public class FixSensorService {
         fsd.setShockDetect(rawSensorData.isVibeValue());
 
         //넘어짐 여부 판단
-        if (!(rawSensorData.getGyroValueX() < 1000 && rawSensorData.getGyroValueX() > -1000)) {
+        if (!(rawSensorData.getGyroValueX() < 60 && rawSensorData.getGyroValueX() > -60)) {
             fsd.setOverturnDetect(true);
         } else {
             fsd.setOverturnDetect(false);
         }
-        if (!(rawSensorData.getGyroValueY() < 1000 && rawSensorData.getGyroValueY() > -1000)) {
+        if (!(rawSensorData.getGyroValueY() < 60 && rawSensorData.getGyroValueY() > -60)) {
             fsd.setOverturnDetect(true);
         } else {
             fsd.setOverturnDetect(false);
@@ -54,7 +54,8 @@ public class FixSensorService {
     }
 
     public List<GpsData> getGpsList(int deviceNumber) {
-        List<FixSensorData> data = fixSensorRepository.findByDeviceNumberAndGpsStatsTrueOrderByRecordDateTime(deviceNumber);
+        List<FixSensorData> data = fixSensorRepository.findByDeviceNumberAndGpsStatsTrueOrderByRecordDateTime(
+                deviceNumber);
         List<GpsData> gpsList = new ArrayList<>();
         for (FixSensorData fixSensorData : data) {
             GpsData gps = new GpsData();
@@ -67,7 +68,8 @@ public class FixSensorService {
     }
 
     public GpsData getGpsLatestOne(int deviceNumber) {
-        FixSensorData data = fixSensorRepository.findFirstByDeviceNumberAndGpsStatsTrueOrderByRecordDateTimeDesc(deviceNumber);
+        FixSensorData data = fixSensorRepository.findFirstByDeviceNumberAndGpsStatsTrueOrderByRecordDateTimeDesc(
+                deviceNumber);
         GpsData gps = new GpsData();
 
         gps.setLat(data.getGpsLat());
@@ -81,17 +83,19 @@ public class FixSensorService {
         List<FixSensorData> dataList = fixSensorRepository.findByDeviceNumberOrderByRecordDateTimeDesc(deviceNumber);
         List<String> resultList = new ArrayList<>();
         for (FixSensorData sensorData : dataList) {
-            if(sensorData.isShockDetect()) {
+            if (sensorData.isShockDetect()) {
                 StringBuilder str = new StringBuilder();
-                str.append(sensorData.getRecordDateTime().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.MEDIUM)));
+                str.append(sensorData.getRecordDateTime()
+                        .format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.MEDIUM)));
                 str.append(" :: ");
                 str.append("충격 감지");
 
                 resultList.add(str.toString());
             }
-            if(sensorData.isOverturnDetect()) {
+            if (sensorData.isOverturnDetect()) {
                 StringBuilder str = new StringBuilder();
-                str.append(sensorData.getRecordDateTime().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.MEDIUM)));
+                str.append(sensorData.getRecordDateTime()
+                        .format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.MEDIUM)));
                 str.append(" :: ");
                 str.append("넘어짐 상태");
 
@@ -99,5 +103,11 @@ public class FixSensorService {
             }
         }
         return resultList;
+    }
+
+    public LocalDateTime getLeastDateTime(int deviceNumber) {
+        FixSensorData fixSensorData = fixSensorRepository.findFirstByDeviceNumberOrderByRecordDateTimeDesc(
+                deviceNumber);
+        return fixSensorData.getRecordDateTime();
     }
 }

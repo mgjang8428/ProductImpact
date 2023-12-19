@@ -1,5 +1,6 @@
 package ptst.productimpact.fixsensor;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -15,4 +16,5 @@ public interface FixSensorRepository extends JpaRepository<FixSensorData, Intege
     List<FixSensorData> findByDeviceNumberAndGpsStatsTrueOrderByRecordDateTime(int deviceNumber);
     FixSensorData findFirstByDeviceNumberAndGpsStatsTrueOrderByRecordDateTimeDesc(int deviceNumber);
     List<FixSensorData> findByDeviceNumberOrderByRecordDateTimeDesc(int deviceNumber);
+    FixSensorData findFirstByDeviceNumberOrderByRecordDateTimeDesc(int deviceNumber);
 }

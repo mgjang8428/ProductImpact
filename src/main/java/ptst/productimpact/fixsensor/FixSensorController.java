@@ -1,5 +1,6 @@
 package ptst.productimpact.fixsensor;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import ptst.productimpact.fixsensor.dto.FixSensorOne;
 import ptst.productimpact.fixsensor.dto.GpsData;
 import ptst.productimpact.product.ProductService;
 
@@ -20,6 +22,20 @@ public class FixSensorController {
     FixSensorService fixSensorService;
     @Autowired
     ProductService productService;
+
+    @GetMapping("/all/{productNum}")
+    public FixSensorOne getAllFixSensorData(@PathVariable int productNum) {
+        int deviceNumber = productService.findDeviceNumber(productNum);
+        int vibeCount = fixSensorService.countVibeSensor(deviceNumber);
+        int overturnCount = fixSensorService.countOventurn(deviceNumber);
+        GpsData gpsData = fixSensorService.getGpsLatestOne(deviceNumber);
+        double lat = gpsData.getLat();
+        double lng = gpsData.getLng();
+        LocalDateTime leastDateTime = fixSensorService.getLeastDateTime(deviceNumber);
+
+        FixSensorOne fixSensorOne = new FixSensorOne(vibeCount, overturnCount, lat, lng, leastDateTime);
+        return fixSensorOne;
+    }
 
     @GetMapping("/vibe/{productNum}")
     public int countVibeSensorValue(@PathVariable int productNum) {
