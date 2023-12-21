@@ -18,7 +18,7 @@ public class ProductService {
     ProductRepository productRepository;
 
     public int findDeviceNumber(int productNumber) {
-        Optional<Product> product = productRepository.findById(1);
+        Optional<Product> product = productRepository.findById(productNumber);
         return product.get().getDeviceNumber();
     }
 
